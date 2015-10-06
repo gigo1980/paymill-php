@@ -112,6 +112,30 @@ class Refund extends Base
         $this->_description = $description;
         return $this;
     }
+
+    /**
+     * @var string
+     */
+    private $_reason;
+
+    /**
+     * Sets the reason
+     * @return string
+     */
+    public function getReason()
+    {
+        return $this->_reason;
+    }
+
+    /**
+     * @param string $reason
+     * @return \Paymill\Models\Response\Refund
+     */
+    public function setReason($reason)
+    {
+        $this->_reason = $reason;
+        return $this;
+    }
     
     /**
      * Whether this refund happend in test- or in livemode.
