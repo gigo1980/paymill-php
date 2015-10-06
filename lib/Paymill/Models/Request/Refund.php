@@ -9,6 +9,10 @@ namespace Paymill\Models\Request;
  */
 class Refund extends Base
 {
+    CONST REASON_KEY_DUPLICATE           = 'duplicate';
+    CONST REASON_KEY_FRAUDULENT          = 'fraudulent';
+    CONST REASON_KEY_REQUEST_BY_CUSTOMER = 'request_by_customer';
+
     /**
      * @var string
      */
@@ -18,6 +22,11 @@ class Refund extends Base
      * @var string
      */
     private $_description;
+
+    /**
+     * @var string
+     */
+    private $_reason;
 
     /**
      * Creates an instance of the refund request model
@@ -68,6 +77,34 @@ class Refund extends Base
     }
 
     /**
+     * Sets the reason
+     * @return string
+     */
+    public function getReason()
+    {
+        return $this->_reason;
+    }
+
+    /**
+     * Returns the reason
+     * @param string $reason
+     * @return \Paymill\Models\Request\Refund
+     */
+    public function setReason($reason)
+    {
+        if (in_array(
+            $reason,
+            array(self::REASON_KEY_FRAUDULENT, self::REASON_KEY_REQUEST_BY_CUSTOMER, self::REASON_KEY_DUPLICATE)
+        )) {
+            $this->_reason = $reason;
+        }
+
+        return $this;
+    }
+
+
+
+    /**
      * Returns an array of parameters customized for the argumented methodname
      * @param string $method
      * @return array
@@ -79,6 +116,9 @@ class Refund extends Base
             case 'create':
                 $parameterArray['amount'] = $this->getAmount();
                 $parameterArray['description'] = $this->getDescription();
+                if (!empty($this->_reason)) {
+                    $parameterArray['reason'] = $this->_reason;
+                }
                 break;
             case 'getOne':
                 $parameterArray['count'] = 1;
