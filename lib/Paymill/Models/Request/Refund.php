@@ -9,15 +9,16 @@ namespace Paymill\Models\Request;
  */
 class Refund extends Base
 {
+
+    CONST REASON_KEY_REQUEST_BY_CUSTOMER = 'request_by_customer';
     CONST REASON_KEY_DUPLICATE           = 'duplicate';
     CONST REASON_KEY_FRAUDULENT          = 'fraudulent';
-    CONST REASON_KEY_REQUEST_BY_CUSTOMER = 'request_by_customer';
 
     /**
      * @var string
      */
     private $_amount;
-    
+
     /**
      * @var string
      */
@@ -48,6 +49,7 @@ class Refund extends Base
     /**
      * Sets the amount
      * @param string $amount
+     * 
      * @return \Paymill\Models\Request\Refund
      */
     public function setAmount($amount)
@@ -68,6 +70,7 @@ class Refund extends Base
     /**
      * Sets the description
      * @param string $description
+     *
      * @return \Paymill\Models\Request\Refund
      */
     public function setDescription($description)
@@ -77,7 +80,7 @@ class Refund extends Base
     }
 
     /**
-     * Sets the reason
+     * Returns the reason
      * @return string
      */
     public function getReason()
@@ -86,8 +89,13 @@ class Refund extends Base
     }
 
     /**
-     * Returns the reason
+     * Sets the reason possible Reasons are
+     *  - Refund::REASON_KEY_REQUEST_BY_CUSTOMER (request_by_customer)
+     *  - Refund::REASON_KEY_DUPLICATE (duplicate)
+     *  - Refund::REASON_KEY_FRAUDULENT (fraudulent)
+     *
      * @param string $reason
+     *
      * @return \Paymill\Models\Request\Refund
      */
     public function setReason($reason)
@@ -107,6 +115,7 @@ class Refund extends Base
     /**
      * Returns an array of parameters customized for the argumented methodname
      * @param string $method
+     *
      * @return array
      */
     public function parameterize($method)
