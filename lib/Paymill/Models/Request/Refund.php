@@ -10,7 +10,7 @@ namespace Paymill\Models\Request;
 class Refund extends Base
 {
 
-    CONST REASON_KEY_REQUEST_BY_CUSTOMER = 'request_by_customer';
+    CONST REASON_KEY_REQUESTED_BY_CUSTOMER = 'requested_by_customer';
     CONST REASON_KEY_DUPLICATE           = 'duplicate';
     CONST REASON_KEY_FRAUDULENT          = 'fraudulent';
 
@@ -49,7 +49,7 @@ class Refund extends Base
     /**
      * Sets the amount
      * @param string $amount
-     * 
+     *
      * @return \Paymill\Models\Request\Refund
      */
     public function setAmount($amount)
@@ -90,7 +90,7 @@ class Refund extends Base
 
     /**
      * Sets the reason possible Reasons are
-     *  - Refund::REASON_KEY_REQUEST_BY_CUSTOMER (request_by_customer)
+     *  - Refund::REASON_KEY_REQUESTED_BY_CUSTOMER (requested_by_customer)
      *  - Refund::REASON_KEY_DUPLICATE (duplicate)
      *  - Refund::REASON_KEY_FRAUDULENT (fraudulent)
      *
@@ -102,7 +102,7 @@ class Refund extends Base
     {
         if (in_array(
             $reason,
-            array(self::REASON_KEY_FRAUDULENT, self::REASON_KEY_REQUEST_BY_CUSTOMER, self::REASON_KEY_DUPLICATE)
+            array(self::REASON_KEY_FRAUDULENT, self::REASON_KEY_REQUESTED_BY_CUSTOMER, self::REASON_KEY_DUPLICATE)
         )) {
             $this->_reason = $reason;
         }
