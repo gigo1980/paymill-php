@@ -222,10 +222,9 @@ class Request
         $parameter = $model->parameterize($method);
         $serviceResource = $model->getServiceResource() . $model->getId();
 
-        if ((is_a($model, '\Paymill\Models\Request\Transaction') || is_a(
-                    $model,
-                    '\Paymill\Models\Request\Preauthorization'
-                )) && $method === "create"
+        if ((is_a($model, '\Paymill\Models\Request\Transaction')
+                || is_a($model, '\Paymill\Models\Request\Preauthorization'))
+            && $method === "create"
         ) {
             $source = !array_key_exists('source', $parameter) ?
                 "PhpLib" . $this->getVersion() :
